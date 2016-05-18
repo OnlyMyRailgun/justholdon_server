@@ -5,6 +5,7 @@ from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 
+
 class Cultivation(Base):
     __tablename__ = 'cultivations'
     id = Column(Integer, primary_key=True)
@@ -97,7 +98,7 @@ if __name__ == "__main__":
     from sqlalchemy import create_engine
     from config import config
     import os
-    DB_URI = config[os.getenv('FLASK_CONFIG') or 'default']
+    DB_URI = config[os.getenv('FLASK_CONFIG') or 'default'].SQLALCHEMY_DATABASE_URI
     engine = create_engine(DB_URI)
     Base.metadata.drop_all(engine)
     Base.metadata.create_all(engine)
